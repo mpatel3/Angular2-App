@@ -1,0 +1,64 @@
+<h1>{{name}}</h1>
+<p>
+  <strong>Email:</strong> {{email}}</p>
+<p>
+  <strong>Address:</strong>{{address.number}},{{address.street}} {{address.locality}} </p>
+<button (click)="showHobbies()">{{ishobbyShown ? "Hide Hobbies": "Show Hobbies"}}</button>
+<ul *ngIf="ishobbyShown">
+  <li *ngFor="let hobby of hobbies; let i=index">
+    {{hobby}} <button (click) = "removeHobby(hobby)" >X</button> <button (click) = "deleteHobby(i)">x</button>
+  </li>
+</ul>
+<hr>
+<h4>Edit User Details</h4>
+<!-- name property is require for ngModel to be used -->
+<div>
+  <form>
+    <div>
+      <label>
+        <strong>Name</strong>
+      </label>
+      <input type="text" name="name" [(ngModel)]="name" />
+    </div>
+    <div>
+      <label>
+        <strong>Email</strong>
+      </label>
+      <input type="text" name="email" [(ngModel)]="email" />
+    </div>
+    <div>
+      <label>
+        <strong>Number</strong>
+      </label>
+      <input type="text" name="address.number" [(ngModel)]="address.number" />
+    </div>
+    <div>
+      <label>
+        <strong>Street</strong>
+      </label>
+      <input type="text" name="address.street" [(ngModel)]="address.street" />
+    </div>
+    <div>
+      <label>
+        <strong>Locality</strong>
+      </label>
+      <input type="text" name="address.locality" [(ngModel)]="address.locality" />
+    </div>
+  </form>
+</div>
+
+<div>
+  <form type="submit">
+    <input type="text" #hobby /> <!-- i don't want to use ngModel but still i want to identiy this as as some input use # sign -->
+    <button (click) ="addHobby(hobby.value)">addHobby</button>
+    <button (click) ="removeHobby()">removeHobby</button>
+  </form>
+</div>
+
+<hr>
+<div>
+  <div *ngFor="let post of posts">
+    <h3>{{post.title}}</h3>
+    <p>{{post.body}}</p>
+  </div>
+</div>
